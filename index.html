@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <link rel="stylesheet" href="css/mdb.min.css" />
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <div class="container" style="height: 100vh">
+    <section>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xl-8 text-center my-3">
+          <div class="input-group mb-3">
+            <input type="text" id="search" class="form-control" placeholder="Search testimonials"
+              aria-label="Search testimonials" aria-describedby="button-addon2" />
+            <button class="btn btn-outline-primary" id="resetBtn" data-mdb-ripple-color="dark">
+              X
+            </button>
+          </div>
+          <p id="resultInfo" class="text-muted"></p>
+        </div>
+      </div>
+      <div class="row" id="testimonialContainer">
+        <!-- Testimonials will be dynamically added here -->
+      </div>
+    </section>
+  </div>
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <!-- Testimonial Template -->
+  <div class="col-md-4 mb-5 d-none" id="testimonialTemplate">
+    <div class="card testimonial-card">
+      <div class="card-up" style="background-color: #9d789b;"></div>
+      <div class="card-body">
+        <p class="dark-grey-text">
+        <p class="tstm-title fw-bold fs-6 "></p>
+        <i class="fas fa-quote-left pe-2"></i>
+        <span class="tstm-text"></span>
+        </p>
+        <hr />
+        <div class="row">
+          <div class="col-4 avatar mx-auto bg-white">
+            <img src="https://placehold.co/40" style="height: 100px; width: auto;"
+              class="rounded-circle img-fluid tstm-picture" />
+          </div>
+          <div class="col-8 text-end">
+            <span class="mb-0 fs-4 tstm-name"></span> <br />
+            <small class="mb-0">
+              <span class="tstm-designation"></span> at
+              <span class="tstm-organization"></span>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom scripts -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+      // Your JavaScript code goes here
+
+      // Fetch testimonials from JSON file (assuming you have a file named testimonials.json)
+      // and populate the testimonials dynamically
+      fetch('/testimonials.json')
+        .then(response => response.json())
+        .then(testimonials => {
+          const testimonialContainer = document.getElementById('testimonialContainer');
+          const searchInput = document.getElementById('search');
+          const resetBtn = document.getElementById('resetBtn');
+          const resultInfo = document.getElementById('resultInfo');
+
+          let filteredTestimonials = testimonials; // Initialize with all testimonials
+
+          // Function to update testimonials based on search input
+          const updateTestimonials = () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            filteredTestimonials = testimonials.filter(testimonial =>
+              testimonial.title.toLowerCase().includes(searchTerm) ||
+              testimonial.text.toLowerCase().includes(searchTerm) ||
+              testimonial.name.toLowerCase().includes(searchTerm) ||
+              testimonial.designation.toLowerCase().includes(searchTerm) ||
+              testimonial.organization.toLowerCase().includes(searchTerm)
+            );
+
+            // Display result information
+            resultInfo.textContent = `Showing ${filteredTestimonials.length} out of ${testimonials.length} testimonials`;
+
+            // Hide all testimonials
+            testimonialContainer.innerHTML = '';
+
+            // Clone and append only the filtered testimonials
+            const template = document.getElementById('testimonialTemplate');
+            filteredTestimonials.forEach(testimonial => {
+              const clone = template.cloneNode(true);
+              clone.classList.remove('d-none'); // Show the cloned element
+              clone.querySelector('.tstm-title').textContent = testimonial.title;
+              clone.querySelector('.tstm-text').textContent = testimonial.text;
+              clone.querySelector('.tstm-picture').src = testimonial.picture;
+              clone.querySelector('.tstm-name').textContent = testimonial.name;
+              clone.querySelector('.tstm-designation').textContent = testimonial.designation;
+              clone.querySelector('.tstm-organization').textContent = testimonial.organization;
+
+              testimonialContainer.appendChild(clone);
+            });
+          };
+
+          // Add event listeners for search input and reset button
+          searchInput.addEventListener('input', updateTestimonials);
+          resetBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            updateTestimonials();
+          });
+
+          // Initial population of testimonials
+          updateTestimonials();
+        });
+    });
+  </script>
+
+
+</body>
+
+</html>
