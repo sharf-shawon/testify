@@ -5,35 +5,121 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Material Design for Bootstrap</title>
+  <title>Testify Sharfuddin Shawon</title>
   <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
   <link rel="stylesheet" href="css/mdb.min.css" />
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* Default height for small devices */
+    #intro-example {
+      height: 200px;
+    }
+
+    /* Height for devices larger than 992px */
+    @media (min-width: 992px) {
+      #intro-example {
+        height: 400px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Start your project here-->
-  <div class="container" style="height: 100vh">
-    <section>
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-10 col-xl-8 text-center my-3">
-          <div class="input-group mb-3">
-            <input type="text" id="search" class="form-control" placeholder="Search testimonials"
-              aria-label="Search testimonials" aria-describedby="button-addon2" />
-            <button class="btn btn-outline-primary" id="resetBtn" data-mdb-ripple-color="dark">
-              X
-            </button>
-          </div>
-          <p id="resultInfo" class="text-muted"></p>
+
+
+  <header class="mb-5">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
         </div>
       </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Background image -->
+    <div id="intro-example" class="p-5 text-center bg-image"
+      style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Welcome to Testify</h1>
+            <h5 class="mb-4">This platform showcases testimonials with a real-time search feature. Discover what people
+              are saying about us!</h5>
+            <!-- Search input -->
+            <div class="input-group mb-3">
+              <input type="search" id="search" class="form-control" placeholder="Search testimonials"
+                aria-label="Search testimonials" />
+              <button type="button" class="btn btn-outline-white" id="resetBtn" data-mdb-ripple-color="dark">
+                Reset Search
+              </button>
+              <button type="button" class="btn btn-outline-white dropdown-toggle dropdown-toggle-split"
+                data-mdb-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" id="ratingFilter">
+                <li><a class="dropdown-item" data-rating="all">All Ratings</a></li>
+                <li><a class="dropdown-item" data-rating="1">1 Star</a></li>
+                <li><a class="dropdown-item" data-rating="2">2 Stars</a></li>
+                <li><a class="dropdown-item" data-rating="3">3 Stars</a></li>
+                <li><a class="dropdown-item" data-rating="4">4 Stars</a></li>
+                <li><a class="dropdown-item" data-rating="5">5 Stars</a></li>
+              </ul>
+            </div>
+            <small id="resultInfo" class="text-grey"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Background image -->
+  </header>
+  <!-- Testimonials Container -->
+  <div class="container" style="min-height: 100vh;">
+    <section class="mb-5">
       <div class="row" id="testimonialContainer">
         <!-- Testimonials will be dynamically added here -->
       </div>
     </section>
   </div>
-  <!-- End your project here-->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2023 Sharfuddin Shawon | <a href="https://shawon.me" target="_blank">shawon.me</a></p>
+    </div>
+  </footer>
 
   <!-- MDB -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
@@ -42,24 +128,34 @@
   <div class="col-md-4 mb-5 d-none" id="testimonialTemplate">
     <div class="card testimonial-card">
       <div class="card-up" style="background-color: #9d789b;"></div>
-      <div class="card-body">
-        <p class="dark-grey-text">
-        <p class="tstm-title fw-bold fs-6 "></p>
+      <div class="card-body dark-grey-text">
+        <div class="row">
+          <div class="col-8">
+            <p class="tstm-title fw-bold fs-6 "></p>
+          </div>
+          <div class="col-4">
+            <div class="star-rating"></div>
+          </div>
+        </div>
         <i class="fas fa-quote-left pe-2"></i>
         <span class="tstm-text"></span>
-        </p>
         <hr />
         <div class="row">
-          <div class="col-4 avatar mx-auto bg-white">
-            <img src="https://placehold.co/40" style="height: 100px; width: auto;"
+          <div class="col-3 avatar mx-auto my-auto bg-white">
+            <img src="https://placehold.co/80" style=" width: 100%; height: auto;"
               class="rounded-circle img-fluid tstm-picture" />
           </div>
-          <div class="col-8 text-end">
+          <div class="col-8 ">
             <span class="mb-0 fs-4 tstm-name"></span> <br />
             <small class="mb-0">
               <span class="tstm-designation"></span> at
               <span class="tstm-organization"></span>
-            </small>
+            </small> <br />
+            <!-- Social Icons -->
+            <div class="d-flex">
+              <a href="#" target="_blank" class="p-1 pb-0" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" target="_blank" class="p-1 pb-0" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
           </div>
         </div>
       </div>
@@ -79,19 +175,23 @@
           const testimonialContainer = document.getElementById('testimonialContainer');
           const searchInput = document.getElementById('search');
           const resetBtn = document.getElementById('resetBtn');
+          const ratingFilter = document.getElementById('ratingFilter');
           const resultInfo = document.getElementById('resultInfo');
 
           let filteredTestimonials = testimonials; // Initialize with all testimonials
 
-          // Function to update testimonials based on search input
+          // Function to update testimonials based on search input and star filter
           const updateTestimonials = () => {
             const searchTerm = searchInput.value.toLowerCase();
+            const selectedRating = ratingFilter.querySelector('.active')?.dataset.rating || 'all';
+
             filteredTestimonials = testimonials.filter(testimonial =>
-              testimonial.title.toLowerCase().includes(searchTerm) ||
-              testimonial.text.toLowerCase().includes(searchTerm) ||
-              testimonial.name.toLowerCase().includes(searchTerm) ||
-              testimonial.designation.toLowerCase().includes(searchTerm) ||
-              testimonial.organization.toLowerCase().includes(searchTerm)
+              (selectedRating === 'all' || testimonial.rating.toString() === selectedRating) &&
+              (testimonial.title.toLowerCase().includes(searchTerm) ||
+                testimonial.text.toLowerCase().includes(searchTerm) ||
+                testimonial.name.toLowerCase().includes(searchTerm) ||
+                testimonial.designation.toLowerCase().includes(searchTerm) ||
+                testimonial.organization.toLowerCase().includes(searchTerm))
             );
 
             // Display result information
@@ -106,30 +206,54 @@
               const clone = template.cloneNode(true);
               clone.classList.remove('d-none'); // Show the cloned element
               clone.querySelector('.tstm-title').textContent = testimonial.title;
-              clone.querySelector('.tstm-text').textContent = testimonial.text;
-              clone.querySelector('.tstm-picture').src = testimonial.picture;
+              clone.querySelector('.tstm-text').innerHTML = highlightKeywords(testimonial.text, searchTerm.split(' '));
+              clone.querySelector('.tstm-picture').src = "https://ui-avatars.com/api/?background=random&name=" + testimonial.name;
               clone.querySelector('.tstm-name').textContent = testimonial.name;
               clone.querySelector('.tstm-designation').textContent = testimonial.designation;
-              clone.querySelector('.tstm-organization').textContent = testimonial.organization;
+
+              // Generate and append star rating
+              const starRatingContainer = clone.querySelector('.star-rating');
+              starRatingContainer.innerHTML = generateStarRating(testimonial.rating);
 
               testimonialContainer.appendChild(clone);
             });
           };
 
-          // Add event listeners for search input and reset button
-          searchInput.addEventListener('input', updateTestimonials);
+          // Add event listeners for search input and star filter
+          searchInput.addEventListener('input', updateTestimonials); // Use 'input' event for real-time updates
           resetBtn.addEventListener('click', () => {
             searchInput.value = '';
             updateTestimonials();
+          });
+
+          ratingFilter.addEventListener('click', (event) => {
+            const selectedRating = event.target.dataset.rating;
+            if (selectedRating) {
+              // Mark the selected rating as active
+              ratingFilter.querySelectorAll('.dropdown-item').forEach(item => item.classList.remove('active'));
+              event.target.classList.add('active');
+              updateTestimonials();
+            }
           });
 
           // Initial population of testimonials
           updateTestimonials();
         });
     });
+
+    // Helper function to generate star rating HTML
+    function generateStarRating(rating) {
+      const stars = '<i class="fas fa-star"></i>'.repeat(rating) +
+        '<i class="far fa-star"></i>'.repeat(5 - rating);
+      return `<div class="star-rating">${stars}</div>`;
+    }
+
+    // Helper function to highlight search keywords
+    function highlightKeywords(text, searchTerms) {
+      const regex = new RegExp(`(${searchTerms.join('|')})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
   </script>
-
-
 </body>
 
 </html>

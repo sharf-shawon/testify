@@ -5,7 +5,8 @@
       "picture": "https://placehold.co/400",
       "name": "John Doe",
       "designation": "CEO",
-      "organization": "ABC Corp"
+      "organization": "ABC Corp",
+      "rating": 5
     },
     {
       "title": "Highly Recommend!",
@@ -13,7 +14,8 @@
       "picture": "https://placehold.co/400",
       "name": "Jane Smith",
       "designation": "CTO",
-      "organization": "XYZ Tech"
+      "organization": "XYZ Tech",
+      "rating": 4
     },
     {
       "title": "Exceptional Work",
@@ -21,7 +23,8 @@
       "picture": "https://placehold.co/400",
       "name": "Bob Johnson",
       "designation": "Lead Developer",
-      "organization": "Tech Innovators"
+      "organization": "Tech Innovators",
+      "rating": 3
     },
     {
       "title": "Great Team Collaboration",
@@ -29,7 +32,8 @@
       "picture": "https://placehold.co/400",
       "name": "Alice Williams",
       "designation": "Project Manager",
-      "organization": "Software Solutions Ltd"
+      "organization": "Software Solutions Ltd",
+      "rating": 2
     },
     {
       "title": "Top-notch Professionals",
@@ -37,7 +41,8 @@
       "picture": "https://placehold.co/400",
       "name": "Mark Davis",
       "designation": "Software Engineer",
-      "organization": "Innovate Systems"
+      "organization": "Innovate Systems",
+      "rating": 1
     }
   ]
   
